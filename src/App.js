@@ -75,14 +75,14 @@ const App = () => {
         const metrics =
           "page_follows,page_post_engagements,page_impressions,page_actions_post_reactions_like_total";
 
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        yesterday.setHours(0, 0, 0, 0);
-        const since = Math.floor(yesterday.getTime() / 1000);
-
         const today = new Date();
-        today.setHours(23, 59, 59, 999); // End of today
+        today.setHours(23, 59, 59, 999);
         const until = Math.floor(today.getTime() / 1000);
+
+        const past28Days = new Date();
+        past28Days.setDate(today.getDate() - 28);
+        past28Days.setHours(0, 0, 0, 0);
+        const since = Math.floor(past28Days.getTime() / 1000);
 
         window.FB.api(
           `/${selectedPage}/insights?metric=${metrics}&since=${since}&until=${until}&period=total_over_range&access_token=${accessToken}`,
