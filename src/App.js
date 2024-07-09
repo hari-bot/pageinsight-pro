@@ -52,7 +52,7 @@ const App = () => {
   const fetchUserProfile = () => {
     window.FB.api(
       "/me",
-      { fields: "id,name,picture.width(150).height(150)" },
+      { fields: "id,name,picture.width(180).height(180)" },
       (userData) => {
         setUser(userData);
         fetchUserPages();
@@ -63,7 +63,6 @@ const App = () => {
   const fetchUserPages = () => {
     window.FB.api("/me/accounts", (pagesData) => {
       setPages(pagesData.data);
-      console.log(pagesData.data);
     });
   };
 
@@ -74,7 +73,7 @@ const App = () => {
       if (selectedPageData && selectedPageData.access_token) {
         const accessToken = selectedPageData.access_token;
         const metrics =
-          "page_follows,page_impressions,page_actions_post_reactions_like_total,page_post_engagements";
+          "page_follows,page_post_engagements,page_impressions,page_actions_post_reactions_like_total";
 
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
@@ -86,7 +85,7 @@ const App = () => {
         const until = Math.floor(today.getTime() / 1000);
 
         window.FB.api(
-          `/${selectedPage}/insights?metric=${metrics}&since=${since}&until=${until}&access_token=${accessToken}`,
+          `/${selectedPage}/insights?metric=${metrics}&since=${since}&until=${until}&period=total_over_range&access_token=${accessToken}`,
           (insightsData) => {
             if (insightsData && !insightsData.error) {
               setInsights(insightsData.data);
@@ -107,7 +106,7 @@ const App = () => {
       {!user ? (
         <FacebookLoginButton login={login} />
       ) : (
-        <div className="">
+        <div className="w-3/4 border rounded-lg px-20 py-10 shadow-xl">
           <UserProfile user={user} />
           <PageSelector
             pages={pages}
