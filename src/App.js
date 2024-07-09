@@ -5,7 +5,7 @@ import PageSelector from "./components/PageSelector";
 import InsightsDisplay from "./components/InsightsDisplay";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [pages, setPages] = useState([]);
   const [selectedPage, setSelectedPage] = useState(null);
   const [insights, setInsights] = useState(null);
@@ -20,6 +20,13 @@ const App = () => {
       });
 
       window.FB.AppEvents.logPageView();
+
+      // Automatically check login status when the SDK loads
+      window.FB.getLoginStatus((response) => {
+        if (response.status === "connected") {
+          fetchUserProfile();
+        }
+      });
     };
 
     (function (d, s, id) {
@@ -55,6 +62,7 @@ const App = () => {
       { fields: "id,name,picture.width(180).height(180)" },
       (userData) => {
         setUser(userData);
+        localStorage.setItem("user", JSON.stringify(userData));
         fetchUserPages();
       }
     );

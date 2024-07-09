@@ -35,7 +35,7 @@ const InsightsDisplayComponent = ({ insights }) => {
               key={index}
               className="border border-blue-300 p-5 rounded-lg shadow-sm"
             >
-              <h3 className="text-md font-semibold flex items-center mb-2">
+              <h3 className="text-md font-semibold flex items-center">
                 {metric.icon && (
                   <FontAwesomeIcon icon={metric.icon} className="mr-2" />
                 )}
