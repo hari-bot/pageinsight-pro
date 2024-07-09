@@ -9,6 +9,7 @@ const App = () => {
   const [pages, setPages] = useState([]);
   const [selectedPage, setSelectedPage] = useState(null);
   const [insights, setInsights] = useState(null);
+  const [timePeriod, setTimePeriod] = useState(28);
 
   useEffect(() => {
     window.fbAsyncInit = function () {
@@ -88,10 +89,10 @@ const App = () => {
         today.setHours(23, 59, 59, 999);
         const until = Math.floor(today.getTime() / 1000);
 
-        const past28Days = new Date();
-        past28Days.setDate(today.getDate() - 28);
-        past28Days.setHours(0, 0, 0, 0);
-        const since = Math.floor(past28Days.getTime() / 1000);
+        const pastDays = new Date();
+        pastDays.setDate(today.getDate() - timePeriod);
+        pastDays.setHours(0, 0, 0, 0);
+        const since = Math.floor(pastDays.getTime() / 1000);
 
         window.FB.api(
           `/${selectedPage}/insights?metric=${metrics}&since=${since}&until=${until}&period=total_over_range&access_token=${accessToken}`,
@@ -121,8 +122,11 @@ const App = () => {
             pages={pages}
             setSelectedPage={setSelectedPage}
             fetchPageInsights={fetchPageInsights}
+            setTimePeriod={setTimePeriod}
           />
-          {insights && <InsightsDisplay insights={insights} />}
+          {insights && (
+            <InsightsDisplay insights={insights} timePeriod={timePeriod} />
+          )}
         </div>
       )}
     </div>

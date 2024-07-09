@@ -17,12 +17,12 @@ const metricTitles = {
   },
 };
 
-const InsightsDisplayComponent = ({ insights }) => {
+const InsightsDisplayComponent = ({ insights, timePeriod }) => {
   return (
     <>
       <div className="my-5">
         <p className="font-semibold text-xl">Page overview </p>
-        <p className="text-gray-500">Last 28 days</p>
+        <p className="text-gray-500">Last {timePeriod} days</p>
       </div>
       <div className="grid grid-cols-2 gap-4">
         {insights.map((insight, index) => {
