@@ -1,7 +1,3 @@
-Here's a simple README for your project:
-
----
-
 # PageInsightPro
 
 PageInsightPro is a React application that allows users to log in with Facebook, select one of their managed pages, and view insights for that page over the last 28 days.
