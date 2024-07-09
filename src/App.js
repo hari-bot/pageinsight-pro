@@ -21,7 +21,6 @@ const App = () => {
 
       window.FB.AppEvents.logPageView();
 
-      // Automatically check login status when the SDK loads
       window.FB.getLoginStatus((response) => {
         if (response.status === "connected") {
           fetchUserProfile();
@@ -40,6 +39,8 @@ const App = () => {
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     })(document, "script", "facebook-jssdk");
+
+    // eslint-disable-next-line
   }, []);
 
   const login = () => {
