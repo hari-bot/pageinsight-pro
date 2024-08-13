@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import FacebookLoginButton from "./components/FacebookLoginButton";
-import UserProfile from "./components/UserProfile";
-import PageSelector from "./components/PageSelector";
-import InsightsDisplay from "./components/InsightsDisplay";
+import HomePage from "./pages/HomePage";
+import { Route, Routes } from "react-router-dom";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -112,24 +111,24 @@ const App = () => {
   };
 
   return (
-    <div className="App container mx-auto h-screen flex items-center justify-center">
-      {!user ? (
-        <FacebookLoginButton login={login} />
-      ) : (
-        <div className="w-3/4 border rounded-lg px-20 py-10 shadow-xl">
-          <UserProfile user={user} />
-          <PageSelector
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <HomePage
+            user={user}
+            login={login}
             pages={pages}
             setSelectedPage={setSelectedPage}
             fetchPageInsights={fetchPageInsights}
             setTimePeriod={setTimePeriod}
+            insights={insights}
+            timePeriod={timePeriod}
           />
-          {insights && (
-            <InsightsDisplay insights={insights} timePeriod={timePeriod} />
-          )}
-        </div>
-      )}
-    </div>
+        }
+      />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+    </Routes>
   );
 };
 
