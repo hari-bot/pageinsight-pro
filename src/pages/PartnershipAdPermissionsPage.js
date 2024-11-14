@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { ChevronDown, RefreshCw } from "lucide-react";
 import NavBar from "../components/Navbar";
 
 const PartnershipAdPermissionsPage = ({ igPages, setSelectedIGPage }) => {
   const [selectedPage, setSelectedPage] = useState(null);
-  const [pendingRequests, setPendingRequests] = useState([]);
   const [creatorUsername, setCreatorUsername] = useState("");
   const [existingPermissions, setExistingPermissions] = useState([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -15,7 +14,7 @@ const PartnershipAdPermissionsPage = ({ igPages, setSelectedIGPage }) => {
     setSelectedIGPage(selected);
   };
 
-  const fetchExistingPermissions = () => {
+  const fetchExistingPermissions = useCallback(() => {
     if (!selectedPage) return;
 
     setIsRefreshing(true);
@@ -31,7 +30,7 @@ const PartnershipAdPermissionsPage = ({ igPages, setSelectedIGPage }) => {
         setIsRefreshing(false);
       }
     );
-  };
+  }, [selectedPage]); // Only re-run when selectedPage changes
 
   const requestPartnershipPermission = () => {
     if (!selectedPage || !creatorUsername) {
@@ -80,7 +79,7 @@ const PartnershipAdPermissionsPage = ({ igPages, setSelectedIGPage }) => {
     if (selectedPage) {
       fetchExistingPermissions();
     }
-  }, [selectedPage]);
+  }, [selectedPage, fetchExistingPermissions]); // Added fetchExistingPermissions to dependency array
 
   return (
     <div className="bg-gray-100 min-h-screen">

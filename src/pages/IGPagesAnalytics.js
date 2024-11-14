@@ -17,6 +17,7 @@ export default function IGPagesAnalytics({
     if (selectedPage) {
       handleFetchInsights();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedPage]);
 
   const handlePageChange = (e) => {
