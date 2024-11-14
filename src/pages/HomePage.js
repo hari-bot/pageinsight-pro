@@ -4,6 +4,7 @@ import FacebookLoginButton from "../components/FacebookLoginButton";
 import UserProfile from "../components/UserProfile";
 import PageSelector from "../components/PageSelector";
 import InsightsDisplay from "../components/InsightsDisplay";
+import NavBar from "../components/Navbar";
 
 const HomePage = ({
   user,
@@ -16,12 +17,15 @@ const HomePage = ({
   timePeriod,
 }) => {
   return (
-    <div className="App container mx-auto h-screen flex flex-col justify-between items-center">
-      <div className="App container mx-auto h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col bg-gray-100">
+      <NavBar />
+      <div className="flex-grow container mx-auto px-4 py-8">
         {!user ? (
-          <FacebookLoginButton login={login} />
+          <div className="flex justify-center items-center h-full">
+            <FacebookLoginButton login={login} />
+          </div>
         ) : (
-          <div className="w-3/4 border rounded-lg px-20 py-10 shadow-xl">
+          <div className="bg-white rounded-lg shadow-xl p-8">
             <UserProfile user={user} />
             <PageSelector
               pages={pages}
@@ -35,10 +39,12 @@ const HomePage = ({
           </div>
         )}
       </div>
-      <footer className="w-full text-center p-4 border-t">
-        <Link to="/privacy-policy" className="text-blue-500 underline">
-          Privacy Policy
-        </Link>
+      <footer className="bg-gray-800 text-white py-4">
+        <div className="container mx-auto text-center">
+          <Link to="/privacy-policy" className="hover:underline">
+            Privacy Policy
+          </Link>
+        </div>
       </footer>
     </div>
   );

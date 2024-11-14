@@ -19,12 +19,12 @@ const metricTitles = {
 
 const InsightsDisplayComponent = ({ insights, timePeriod }) => {
   return (
-    <>
-      <div className="my-5">
-        <p className="font-semibold text-xl">Page overview </p>
-        <p className="text-gray-500">Last {timePeriod} days</p>
+    <div className="mt-8">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-800">Page Overview</h2>
+        <p className="text-gray-600">Last {timePeriod} days</p>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {insights.map((insight, index) => {
           const metric = metricTitles[insight.name] || {
             title: "Unknown Metric",
@@ -33,22 +33,27 @@ const InsightsDisplayComponent = ({ insights, timePeriod }) => {
           return (
             <div
               key={index}
-              className="border border-blue-300 p-5 rounded-lg shadow-sm"
+              className="bg-white border border-gray-200 rounded-lg shadow-sm p-6 hover:shadow-md transition duration-300"
             >
-              <h3 className="text-md font-semibold flex items-center">
+              <div className="flex items-center mb-2">
                 {metric.icon && (
-                  <FontAwesomeIcon icon={metric.icon} className="mr-2" />
+                  <FontAwesomeIcon
+                    icon={metric.icon}
+                    className="text-blue-500 mr-3 text-xl"
+                  />
                 )}
-                {metric.title}
-              </h3>
-              <p className="text-2xl font-semibold">
-                {insight.values[0].value}
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {metric.title}
+                </h3>
+              </div>
+              <p className="text-3xl font-bold text-blue-600">
+                {insight.values[0].value.toLocaleString()}
               </p>
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
