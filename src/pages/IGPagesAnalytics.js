@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, RefreshCw, User } from "lucide-react";
 import NavBar from "../components/Navbar";
+import { useCallback } from "react";
 
 export default function IGPagesAnalytics({
   igPages,
@@ -24,11 +25,11 @@ export default function IGPagesAnalytics({
     setSelectedIGPage(selected);
   };
 
-  const handleFetchInsights = async () => {
+  const handleFetchInsights = useCallback(async () => {
     setIsLoading(true);
     await fetchIGPageInsights();
     setIsLoading(false);
-  };
+  }, [fetchIGPageInsights]);
 
   const renderInsights = (insights) => {
     if (!insights || insights.length === 0)
