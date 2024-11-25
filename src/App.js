@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-import IGPagesAnalytics from "./pages/IGPagesAnalytics"; // Import the new page component
+import IGPagesAnalytics from "./pages/IGPagesAnalytics";
 import PartnershipAdPermissionsPage from "./pages/PartnershipAdPermissionsPage";
+import BoostAccessManagementPage from "./pages/BoostAccessManagementPage";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -213,6 +214,15 @@ const App = () => {
         path="/partnership-ads"
         element={
           <PartnershipAdPermissionsPage
+            igPages={igPages}
+            setSelectedIGPage={setSelectedIGPage}
+          />
+        }
+      />
+      <Route
+        path="/boost-acess"
+        element={
+          <BoostAccessManagementPage
             igPages={igPages}
             setSelectedIGPage={setSelectedIGPage}
           />

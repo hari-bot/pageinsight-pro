@@ -41,6 +41,14 @@ const NavBar = () => {
               >
                 Manage Partnership
               </Link>
+              <Link
+                to="/boost-acess"
+                className={`py-5 px-3 hover:bg-blue-700 transition duration-300 ${isActive(
+                  "/boost-acess"
+                )}`}
+              >
+                Boost Access
+              </Link>
             </div>
           </div>
         </div>

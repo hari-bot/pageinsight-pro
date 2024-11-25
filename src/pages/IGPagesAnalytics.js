@@ -118,6 +118,7 @@ export default function IGPagesAnalytics({
               <div className="text-center sm:text-left">
                 <h2 className="text-2xl font-bold text-gray-800">
                   {selectedPage.username}
+                  {selectedPage.id}
                 </h2>
                 <p className="text-gray-600 text-lg">
                   <span className="font-semibold">
