@@ -113,7 +113,7 @@ const CreatePostWithMentions = ({ pages }) => {
 
           <div className="mb-4">
             <label className="block mb-2 font-medium text-gray-700">
-              Post Message
+              Caption
             </label>
             <textarea
               value={message}
