@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import NavBar from "../components/Navbar";
-import { Loader } from "lucide-react";
 
 const CreatePostWithMentions = ({ pages }) => {
   const [selectedPage, setSelectedPage] = useState(null);
