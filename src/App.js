@@ -5,6 +5,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import IGPagesAnalytics from "./pages/IGPagesAnalytics";
 import PartnershipAdPermissionsPage from "./pages/PartnershipAdPermissionsPage";
 import BoostAccessManagementPage from "./pages/BoostAccessManagementPage";
+import CreatePostWithMentionsPage from "./pages/CreatePostWithMentionsPage";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -20,10 +21,10 @@ const App = () => {
   useEffect(() => {
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: "385485799882497",
+        appId: "1297409667895847",
         cookie: true,
         xfbml: true,
-        version: "v12.0",
+        version: "v21.0",
       });
 
       window.FB.AppEvents.logPageView();
@@ -59,7 +60,7 @@ const App = () => {
       },
       {
         scope:
-          "public_profile,email,pages_show_list,pages_read_engagement,read_insights,instagram_basic,instagram_manage_insights,instagram_branded_content_creator,instagram_branded_content_ads_brand,instagram_branded_content_brand",
+          "public_profile,email,pages_show_list,pages_read_engagement,read_insights,instagram_basic,instagram_manage_insights,instagram_branded_content_creator,instagram_branded_content_ads_brand,instagram_branded_content_brand,pages_manage_posts",
       }
     );
   };
@@ -90,7 +91,7 @@ const App = () => {
       if (selectedPageData && selectedPageData.access_token) {
         const accessToken = selectedPageData.access_token;
         const metrics =
-          "page_follows,page_post_engagements,page_impressions,page_actions_post_reactions_like_total";
+          "page_follows,page_post_engagements,page_impressions,page_actions_post_reactions_like_total,";
 
         const today = new Date();
         today.setHours(23, 59, 59, 999);
@@ -224,6 +225,15 @@ const App = () => {
         element={
           <BoostAccessManagementPage
             igPages={igPages}
+            setSelectedIGPage={setSelectedIGPage}
+          />
+        }
+      />
+      <Route
+        path="/create-post"
+        element={
+          <CreatePostWithMentionsPage
+            pages={pages}
             setSelectedIGPage={setSelectedIGPage}
           />
         }

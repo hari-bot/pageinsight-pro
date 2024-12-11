@@ -26,6 +26,14 @@ const NavBar = () => {
                 Home
               </Link>
               <Link
+                to="/create-post"
+                className={`py-5 px-3 hover:bg-blue-700 transition duration-300 ${isActive(
+                  "/boost-acess"
+                )}`}
+              >
+                Create Post
+              </Link>
+              <Link
                 to="/ig-analytics"
                 className={`py-5 px-3 hover:bg-blue-700 transition duration-300 ${isActive(
                   "/ig-analytics"
