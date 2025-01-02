@@ -26,9 +26,17 @@ const NavBar = () => {
                 Home
               </Link>
               <Link
+                to="/fb-insights"
+                className={`py-5 px-3 hover:bg-blue-700 transition duration-300 ${isActive(
+                  "/fb-insights"
+                )}`}
+              >
+                FB Insights
+              </Link>
+              <Link
                 to="/create-post"
                 className={`py-5 px-3 hover:bg-blue-700 transition duration-300 ${isActive(
-                  "/boost-acess"
+                  "/create-post"
                 )}`}
               >
                 Create Post

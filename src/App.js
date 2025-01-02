@@ -6,6 +6,7 @@ import IGPagesAnalytics from "./pages/IGPagesAnalytics";
 import PartnershipAdPermissionsPage from "./pages/PartnershipAdPermissionsPage";
 import BoostAccessManagementPage from "./pages/BoostAccessManagementPage";
 import CreatePostWithMentionsPage from "./pages/CreatePostWithMentionsPage";
+import FacebookInsightsDashboard from "./pages/FacebookInsightsDashboard";
 
 const App = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -21,7 +22,7 @@ const App = () => {
   useEffect(() => {
     window.fbAsyncInit = function () {
       window.FB.init({
-        appId: "933131578200536",
+        appId: "1297409667895847",
         cookie: true,
         xfbml: true,
         version: "v21.0",
@@ -237,6 +238,10 @@ const App = () => {
             setSelectedIGPage={setSelectedIGPage}
           />
         }
+      />
+      <Route
+        path="/fb-insights"
+        element={<FacebookInsightsDashboard fbPages={pages} />}
       />
     </Routes>
   );
